@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShComp.Nanoleaf", "ShComp.Nanoleaf\ShComp.Nanoleaf.csproj", "{68D112BE-FC90-4D0F-9808-F0032A5762A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShComp.Nanoleaf.Test", "ShComp.Nanoleaf.Test\ShComp.Nanoleaf.Test.csproj", "{4E4DDE31-EBFA-4F2C-BC95-0DF6C7C99854}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{68D112BE-FC90-4D0F-9808-F0032A5762A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68D112BE-FC90-4D0F-9808-F0032A5762A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68D112BE-FC90-4D0F-9808-F0032A5762A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E4DDE31-EBFA-4F2C-BC95-0DF6C7C99854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E4DDE31-EBFA-4F2C-BC95-0DF6C7C99854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E4DDE31-EBFA-4F2C-BC95-0DF6C7C99854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E4DDE31-EBFA-4F2C-BC95-0DF6C7C99854}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
