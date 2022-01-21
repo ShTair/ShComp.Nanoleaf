@@ -50,7 +50,7 @@ public sealed class Nanoleaf : IDisposable, INanoleaf, IState, IEffectCollection
     async Task IState.PutBrightnessAsync(int value, TimeSpan duration)
     {
         var uri = _baseUri + "/state";
-        var response = await _client.PutAsJsonAsync(uri, new { brightness = new { value, duration = duration.TotalSeconds } });
+        var response = await _client.PutAsJsonAsync(uri, new { brightness = new { value, duration = (int)duration.TotalSeconds } });
         if (!response.IsSuccessStatusCode) throw new ArgumentException("invalid value");
     }
 

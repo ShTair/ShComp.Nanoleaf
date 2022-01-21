@@ -5,21 +5,15 @@ using Xunit;
 
 namespace ShComp.Nanoleaf.Test
 {
-    public class NanoleafTest
+    public class NanoleafEffectsTest
     {
         private readonly IConfiguration _configuration;
         private readonly INanoleaf _nanoleaf;
 
-        public NanoleafTest()
+        public NanoleafEffectsTest()
         {
-            _configuration = new ConfigurationBuilder().AddUserSecrets<NanoleafTest>().Build();
+            _configuration = new ConfigurationBuilder().AddUserSecrets<NanoleafEffectsTest>().Build();
             _nanoleaf = Nanoleaf.Create(_configuration["Host"], _configuration["Token"]);
-        }
-
-        [Fact]
-        public async Task StatePutBTest()
-        {
-            await _nanoleaf.State.PutBrightnessAsync(50, TimeSpan.FromSeconds(10));
         }
 
         [Fact]
