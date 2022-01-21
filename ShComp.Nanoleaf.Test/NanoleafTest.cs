@@ -33,14 +33,22 @@ namespace ShComp.Nanoleaf.Test
         [Fact]
         public async Task EffectsPutSelectTest()
         {
-            var effectNames = await _nanoleaf.Effects.ListAsync();
-            await _nanoleaf.Effects.PutSelectAsync(effectNames[0]);
+            var effectName = _configuration["EffectName"];
+            await _nanoleaf.Effects.PutSelectAsync(effectName);
         }
 
         [Fact]
         public async Task EffectsPutSelectErrorTest()
         {
             await Assert.ThrowsAsync<ArgumentException>(() => _nanoleaf.Effects.PutSelectAsync("ErrorName"));
+        }
+
+        [Fact]
+        public async Task EffectsWriteCommandTest()
+        {
+            var effectName = _configuration["EffectName"];
+            var command = await _nanoleaf.Effects.WriteCommandAsync(new RequestCommand(effectName));
+            Assert.Equal(effectName, command.AnimName);
         }
     }
 }

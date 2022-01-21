@@ -7,4 +7,6 @@ public interface IEffectCollection
     Task<string> GetSelectAsync();
 
     Task PutSelectAsync(string effectName);
+
+    Task<EffectCommand> WriteCommandAsync(EffectCommand command);
 }

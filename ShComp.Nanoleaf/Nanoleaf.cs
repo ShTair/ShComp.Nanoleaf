@@ -1,10 +1,13 @@
 ﻿using System.Net.Http.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ShComp.Nanoleaf;
 
 public sealed class Nanoleaf : IDisposable, INanoleaf, IEffectCollection
 {
     private readonly HttpClient _client;
+    private readonly JsonSerializerOptions _jsonSerializerOptions;
 
     private readonly Uri _baseUri;
 
@@ -13,6 +16,11 @@ public sealed class Nanoleaf : IDisposable, INanoleaf, IEffectCollection
     private Nanoleaf(string host, int port, string authToken)
     {
         _client = new HttpClient();
+        _jsonSerializerOptions = new(JsonSerializerDefaults.Web)
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        };
+
         _baseUri = new Uri($"http://{host}:{port}/api/v1/{authToken}");
     }
 
@@ -55,7 +63,15 @@ public sealed class Nanoleaf : IDisposable, INanoleaf, IEffectCollection
     {
         var uri = _baseUri + "/effects";
         var response = await _client.PutAsJsonAsync(uri, new { select = effectName });
-        if (!response.IsSuccessStatusCode) throw new ArgumentException();
+        if (!response.IsSuccessStatusCode) throw new ArgumentException("invalid effect name", nameof(effectName));
+    }
+
+    async Task<EffectCommand> IEffectCollection.WriteCommandAsync(EffectCommand command)
+    {
+        var uri = _baseUri + "/effects";
+        var response = await _client.PutAsJsonAsync(uri, new { write = command }, _jsonSerializerOptions);
+        if (!response.IsSuccessStatusCode) throw new ArgumentException("invalid command", nameof(command));
+        return (await response.Content.ReadFromJsonAsync<EffectCommand>())!;
     }
 
     #endregion
