@@ -17,6 +17,12 @@ namespace ShComp.Nanoleaf.Test
         }
 
         [Fact]
+        public async Task StatePutBTest()
+        {
+            await _nanoleaf.State.PutBrightnessAsync(50, TimeSpan.FromSeconds(10));
+        }
+
+        [Fact]
         public async Task EffectsListTest()
         {
             var effectNames = await _nanoleaf.Effects.ListAsync();

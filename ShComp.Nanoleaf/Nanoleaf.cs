@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace ShComp.Nanoleaf;
 
-public sealed class Nanoleaf : IDisposable, INanoleaf, IEffectCollection
+public sealed class Nanoleaf : IDisposable, INanoleaf, IState, IEffectCollection
 {
     private readonly HttpClient _client;
     private readonly JsonSerializerOptions _jsonSerializerOptions;
@@ -39,7 +39,20 @@ public sealed class Nanoleaf : IDisposable, INanoleaf, IEffectCollection
 
     #region INanoleaf
 
+    IState INanoleaf.State => this;
+
     IEffectCollection INanoleaf.Effects => this;
+
+    #endregion
+
+    #region IState
+
+    async Task IState.PutBrightnessAsync(int value, TimeSpan duration)
+    {
+        var uri = _baseUri + "/state";
+        var response = await _client.PutAsJsonAsync(uri, new { brightness = new { value, duration = duration.TotalSeconds } });
+        if (!response.IsSuccessStatusCode) throw new ArgumentException("invalid value");
+    }
 
     #endregion
 
