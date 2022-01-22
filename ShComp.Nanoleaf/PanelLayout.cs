@@ -1,23 +1,24 @@
-﻿namespace ShComp.Nanoleaf;
+﻿#pragma warning disable CS8618
+namespace ShComp.Nanoleaf;
 
 public class PanelLayout
 {
-    public int numPanels { get; set; }
+    public int NumPanels { get; set; }
 
-    public int sideLength { get; set; }
-    
-    public Positiondata[] positionData { get; set; }
+    public int SideLength { get; set; }
+
+    public PositionData[] PositionData { get; set; }
 }
 
-public class Positiondata
+public class PositionData
 {
-    public int panelId { get; set; }
-    
-    public int x { get; set; }
-    
-    public int y { get; set; }
-    
-    public int o { get; set; }
-    
-    public int shapeType { get; set; }
+    public int PanelId { get; set; }
+
+    public int X { get; set; }
+
+    public int Y { get; set; }
+
+    public int O { get; set; }
+
+    public int ShapeType { get; set; }
 }

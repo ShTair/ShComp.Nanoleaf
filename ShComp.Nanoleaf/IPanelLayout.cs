@@ -2,5 +2,5 @@
 
 public interface IPanelLayout
 {
-    Task GetLayoutAsync();
+    Task<PanelLayout> GetLayoutAsync();
 }

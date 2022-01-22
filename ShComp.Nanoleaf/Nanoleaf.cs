@@ -49,10 +49,12 @@ public sealed class Nanoleaf : IDisposable, INanoleaf, IPanelLayout, IState, IEf
 
     #region IPanelLayout
 
-    async Task IPanelLayout.GetLayoutAsync()
+    async Task<PanelLayout> IPanelLayout.GetLayoutAsync()
     {
         var uri = _baseUri + "/panelLayout/layout";
-        throw new NotImplementedException();
+        var result = await _client.GetFromJsonAsync<PanelLayout>(uri);
+        if (result is null) throw new Exception();
+        return result;
     }
 
     #endregion
