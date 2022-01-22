@@ -55,9 +55,13 @@ namespace ShComp.Nanoleaf.Test
         public async Task EffectsWriteDisplayCommandTest()
         {
             var command = EffectCommand.CreateDisplay()
-                .WithPalette(60, 37, 100, 1)
-                .WithPalette(0, 0, 0, 10)
-                .Attach()
+                .WithPalette(0, 37, 100)
+                .WithPalette(60, 37, 100)
+                .WithPalette(120, 37, 100)
+                .WithPalette(180, 37, 100)
+                .WithPalette(240, 37, 100)
+                .WithPalette(300, 37, 100)
+                .WithPalette(0, 0, 0, 16)
                 .WithRandomPlugin(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(20))
                 .HasNotOverlay();
 

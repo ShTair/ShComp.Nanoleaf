@@ -48,9 +48,10 @@ public class EffectCommand : IWithPalette, IWithPalettes, IWithAnimType, IHasOve
 
     #region IWithPalette
 
-    IWithPalettes IWithPalette.WithPalette(int hue, int saturation, int brightness, double probability)
+    IWithAnimType IWithPalette.WithPalette(int hue, int saturation, int brightness, int count, double probability)
     {
-        Palettes = new List<Palette> { new Palette(hue, saturation, brightness, probability) };
+        if (count < 1) throw new ArgumentOutOfRangeException(nameof(count));
+        Palettes = Enumerable.Range(0, count).Select(t => new Palette(hue, saturation, brightness, probability)).ToList();
         return this;
     }
 
@@ -58,14 +59,10 @@ public class EffectCommand : IWithPalette, IWithPalettes, IWithAnimType, IHasOve
 
     #region IWithPalettes
 
-    IWithPalettes IWithPalettes.WithPalette(int hue, int saturation, int brightness, double probability)
+    IWithAnimType IWithPalettes.WithPalette(int hue, int saturation, int brightness, int count, double probability)
     {
-        Palettes!.Add(new Palette(hue, saturation, brightness, probability));
-        return this;
-    }
-
-    IWithAnimType IWithPalettes.Attach()
-    {
+        if (count < 1) throw new ArgumentOutOfRangeException(nameof(count));
+        Palettes!.AddRange(Enumerable.Range(0, count).Select(t => new Palette(hue, saturation, brightness, probability)));
         return this;
     }
 
@@ -125,17 +122,15 @@ public class EffectCommand : IWithPalette, IWithPalettes, IWithAnimType, IHasOve
 
 public interface IWithPalette
 {
-    IWithPalettes WithPalette(int hue, int saturation, int brightness, double probability);
+    IWithAnimType WithPalette(int hue, int saturation, int brightness, int count = 1, double probability = 0);
 }
 
 public interface IWithPalettes
 {
-    IWithPalettes WithPalette(int hue, int saturation, int brightness, double probability);
-
-    IWithAnimType Attach();
+    IWithAnimType WithPalette(int hue, int saturation, int brightness, int count = 1, double probability = 0);
 }
 
-public interface IWithAnimType
+public interface IWithAnimType : IWithPalettes
 {
     IHasOverlay WithWheelPlugin(string linDirection, bool loop, int nColorsPerFrame, TimeSpan transTime);
 
