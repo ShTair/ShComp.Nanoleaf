@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace ShComp.Nanoleaf;
 
-public sealed class Nanoleaf : IDisposable, INanoleaf, IState, IEffectCollection
+public sealed class Nanoleaf : IDisposable, INanoleaf, IPanelLayout, IState, IEffectCollection
 {
     private readonly HttpClient _client;
     private readonly JsonSerializerOptions _jsonSerializerOptions;
@@ -39,9 +39,21 @@ public sealed class Nanoleaf : IDisposable, INanoleaf, IState, IEffectCollection
 
     #region INanoleaf
 
+    IPanelLayout INanoleaf.PanelLayout => this;
+
     IState INanoleaf.State => this;
 
     IEffectCollection INanoleaf.Effects => this;
+
+    #endregion
+
+    #region IPanelLayout
+
+    async Task IPanelLayout.GetLayoutAsync()
+    {
+        var uri = _baseUri + "/panelLayout/layout";
+        throw new NotImplementedException();
+    }
 
     #endregion
 
