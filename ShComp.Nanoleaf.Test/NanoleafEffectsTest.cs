@@ -44,10 +44,10 @@ namespace ShComp.Nanoleaf.Test
         }
 
         [Fact]
-        public async Task EffectsWriteRequestCommandTest()
+        public async Task EffectsWriteRequestTest()
         {
             var effectName = _configuration["EffectName"];
-            var command = await _nanoleaf.Effects.WriteCommandAsync(EffectCommand.CreateRequest(effectName));
+            var command = await _nanoleaf.Effects.WriteRequestAsync(effectName);
             Assert.Equal(effectName, command.AnimName);
         }
 
@@ -61,7 +61,7 @@ namespace ShComp.Nanoleaf.Test
                 .WithRandomPlugin(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(20))
                 .HasNotOverlay();
 
-            await _nanoleaf.Effects.WriteCommandAsync(command);
+            await _nanoleaf.Effects.WriteDisplayAsync(command);
         }
     }
 }

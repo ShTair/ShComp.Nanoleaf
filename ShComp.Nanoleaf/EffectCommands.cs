@@ -121,7 +121,6 @@ public class EffectCommand : IWithPalette, IWithPalettes, IWithAnimType, IHasOve
     }
 
     #endregion
-
 }
 
 public interface IWithPalette
