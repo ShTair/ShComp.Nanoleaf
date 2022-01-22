@@ -63,7 +63,16 @@ namespace ShComp.Nanoleaf.Test
                 .WithPalette(300, 37, 100)
                 .WithPalette(0, 0, 0, 16)
                 .WithRandomPlugin(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(20))
-                .HasNotOverlay();
+                .HasOverlay(AnimationData.Create()
+                    .WithPanelColors(841)
+                        .WithPanelColor(255, 0, 0, 0, TimeSpan.FromSeconds(1))
+                        .WithPanelColor(127, 0, 0, 0, TimeSpan.FromSeconds(1))
+                    .WithPanelColors(62283)
+                        .WithPanelColor(0, 255, 0, 0, TimeSpan.FromSeconds(0.5))
+                        .WithPanelColor(0, 127, 0, 0, TimeSpan.FromSeconds(0.5))
+                        .WithPanelColor(0, 255, 0, 0, TimeSpan.FromSeconds(0.5))
+                        .WithPanelColor(0, 127, 0, 0, TimeSpan.FromSeconds(0.5))
+                    .ConvertToString());
 
             await _nanoleaf.Effects.WriteDisplayAsync(command);
         }
