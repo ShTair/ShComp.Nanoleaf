@@ -79,12 +79,16 @@ public sealed class Nanoleaf : IDisposable, INanoleaf, IState, IEffectCollection
         if (!response.IsSuccessStatusCode) throw new ArgumentException("invalid effect name", nameof(effectName));
     }
 
-    async Task<EffectCommand> IEffectCollection.WriteCommandAsync(EffectCommand command)
+    async Task<Animation> IEffectCollection.WriteCommandAsync(EffectCommand command)
     {
         var uri = _baseUri + "/effects";
+
+        var json = JsonSerializer.Serialize(command, _jsonSerializerOptions);
+
+
         var response = await _client.PutAsJsonAsync(uri, new { write = command }, _jsonSerializerOptions);
         if (!response.IsSuccessStatusCode) throw new ArgumentException("invalid command", nameof(command));
-        return (await response.Content.ReadFromJsonAsync<EffectCommand>())!;
+        return (await response.Content.ReadFromJsonAsync<Animation>())!;
     }
 
     #endregion

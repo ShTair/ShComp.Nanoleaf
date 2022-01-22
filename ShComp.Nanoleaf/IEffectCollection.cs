@@ -8,5 +8,5 @@ public interface IEffectCollection
 
     Task PutSelectAsync(string effectName);
 
-    Task<EffectCommand> WriteCommandAsync(EffectCommand command);
+    Task<Animation> WriteCommandAsync(EffectCommand command);
 }
