@@ -15,23 +15,11 @@ public class AnimationData : List<PanelColors>, AnimationData.IBlank, AnimationD
 
         foreach (var pc in this)
         {
-            sb.Append(' ');
-            sb.Append(pc.PanelId);
-            sb.Append(' ');
-            sb.Append(pc.Colors.Count);
+            sb.Append($" {pc.PanelId} {pc.Colors.Count}");
 
             foreach (var pcc in pc.Colors)
             {
-                sb.Append(' ');
-                sb.Append(pcc.R);
-                sb.Append(' ');
-                sb.Append(pcc.G);
-                sb.Append(' ');
-                sb.Append(pcc.B);
-                sb.Append(' ');
-                sb.Append(pcc.W);
-                sb.Append(' ');
-                sb.Append((int)(pcc.T.TotalSeconds * 10));
+                sb.Append($" {pcc.R} {pcc.G} {pcc.B} {pcc.W} {(int)(pcc.T.TotalSeconds * 10)}");
             }
         }
 
