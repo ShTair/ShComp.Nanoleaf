@@ -2,9 +2,9 @@
 
 using System.Text;
 
-namespace ShComp.Nanoleaf;
+namespace ShComp.Nanoleaf.Fluent.AnimationData;
 
-public class AnimationData : List<PanelColors>, AnimationData.IBlank, AnimationData.IWithPanelColors, AnimationData.IWithPanelColor
+public class AnimationData : List<PanelColors>, IBlank, IWithPanelColors, IWithPanelColor
 {
     public string ConvertToString()
     {
@@ -30,24 +30,6 @@ public class AnimationData : List<PanelColors>, AnimationData.IBlank, AnimationD
     {
         return new AnimationData();
     }
-
-    #region Interfaces
-
-    public interface IBlank : IWithPanelColors { }
-
-    public interface IWithPanelColors
-    {
-        IWithPanelColor WithPanelColors(int panelId);
-    }
-
-    public interface IWithPanelColor : IWithPanelColors
-    {
-        IWithPanelColor WithPanelColor(int r, int g, int b, int w, TimeSpan t);
-
-        string ConvertToString();
-    }
-
-    #endregion
 
     #region IWithPanelColors
 

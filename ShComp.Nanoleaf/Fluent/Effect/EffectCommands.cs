@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ShComp.Nanoleaf;
+namespace ShComp.Nanoleaf.Fluent.Effect;
 
 #pragma warning disable CS8618
 

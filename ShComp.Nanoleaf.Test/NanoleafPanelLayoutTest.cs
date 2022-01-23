@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Configuration;
+using ShComp.Nanoleaf.Fluent;
 using System.Threading.Tasks;
 using Xunit;
 

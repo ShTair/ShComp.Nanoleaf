@@ -1,4 +1,4 @@
-﻿namespace ShComp.Nanoleaf;
+﻿namespace ShComp.Nanoleaf.Fluent.State;
 
 public interface IState
 {

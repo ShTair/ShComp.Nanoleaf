@@ -1,5 +1,5 @@
 ﻿#pragma warning disable CS8618
-namespace ShComp.Nanoleaf;
+namespace ShComp.Nanoleaf.Fluent.PanelLayout;
 
 public class PanelLayout
 {

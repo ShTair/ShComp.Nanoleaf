@@ -1,4 +1,8 @@
-﻿using System.Net.Http.Json;
+﻿using ShComp.Nanoleaf.Fluent;
+using ShComp.Nanoleaf.Fluent.Effect;
+using ShComp.Nanoleaf.Fluent.PanelLayout;
+using ShComp.Nanoleaf.Fluent.State;
+using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 

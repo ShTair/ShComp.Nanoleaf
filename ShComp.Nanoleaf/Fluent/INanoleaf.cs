@@ -1,4 +1,8 @@
-﻿namespace ShComp.Nanoleaf;
+﻿using ShComp.Nanoleaf.Fluent.Effect;
+using ShComp.Nanoleaf.Fluent.PanelLayout;
+using ShComp.Nanoleaf.Fluent.State;
+
+namespace ShComp.Nanoleaf.Fluent;
 
 public interface INanoleaf
 {

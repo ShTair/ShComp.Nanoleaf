@@ -1,4 +1,7 @@
 using Microsoft.Extensions.Configuration;
+using ShComp.Nanoleaf.Fluent;
+using ShComp.Nanoleaf.Fluent.AnimationData;
+using ShComp.Nanoleaf.Fluent.Effect;
 using System;
 using System.Threading.Tasks;
 using Xunit;
