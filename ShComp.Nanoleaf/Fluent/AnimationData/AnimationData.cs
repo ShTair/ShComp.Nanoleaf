@@ -49,6 +49,16 @@ public class AnimationData : List<PanelColors>, IBlank, IWithPanelColors, IWithP
         return this;
     }
 
+    IWithPanelColor IWithPanelColor.WithPanelColor(int r, int g, int b, int w, TimeSpan t, TimeSpan span)
+    {
+        this[Count - 1].Colors.Add(new PanelColor(r, g, b, w, t));
+        if (span != TimeSpan.Zero)
+        {
+            this[Count - 1].Colors.Add(new PanelColor(r, g, b, w, span));
+        }
+        return this;
+    }
+
     #endregion
 }
 
