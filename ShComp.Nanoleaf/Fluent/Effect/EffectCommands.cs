@@ -4,7 +4,7 @@ namespace ShComp.Nanoleaf.Fluent.Effect;
 
 #pragma warning disable CS8618
 
-public class EffectCommand : IWithPalette, IWithPalettes, IWithAnimType, IHasOverlay
+public class EffectCommand : IWithPalette, IWithPalettes, IWithAnimType, IWithPluginOptions, IHasOverlay
 {
     public string? Command { get; set; }
 
@@ -100,6 +100,25 @@ public class EffectCommand : IWithPalette, IWithPalettes, IWithAnimType, IHasOve
         return this;
     }
 
+    IWithPluginOptions IWithAnimType.WithPlugin(Guid id)
+    {
+        AnimType = "plugin";
+        PluginType = "color";
+        PluginUuid = id.ToString();
+        PluginOptions = new List<PluginOption>();
+        return this;
+    }
+
+    #endregion
+
+    #region IWithPluginOptions
+
+    IWithPluginOptions IWithPluginOptions.AddPluginOption(string name, object value)
+    {
+        PluginOptions!.Add(new PluginOption(name, value));
+        return this;
+    }
+
     #endregion
 
     #region IHasOverlay
@@ -135,6 +154,13 @@ public interface IWithAnimType : IWithPalettes
     IHasOverlay WithWheelPlugin(string linDirection, bool loop, int nColorsPerFrame, TimeSpan transTime);
 
     IHasOverlay WithRandomPlugin(TimeSpan delayTime, TimeSpan transTime);
+
+    IWithPluginOptions WithPlugin(Guid id);
+}
+
+public interface IWithPluginOptions : IHasOverlay
+{
+    IWithPluginOptions AddPluginOption(string name, object value);
 }
 
 public interface IHasOverlay
