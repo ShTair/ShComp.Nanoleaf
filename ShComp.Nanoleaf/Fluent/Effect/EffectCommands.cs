@@ -46,6 +46,15 @@ public class EffectCommand : IWithPalette, IWithPalettes, IWithAnimType, IWithPl
         LogicalPanelsEnabled = true,
     };
 
+    public static IWithPalette CreateAdd(string animName) => new EffectCommand
+    {
+        Version = "2.0",
+        Command = "add",
+        AnimName = animName,
+        ColorType = "HSB",
+        LogicalPanelsEnabled = true,
+    };
+
     #region IWithPalette
 
     IWithAnimType IWithPalette.WithPalette(int hue, int saturation, int brightness, int count, double probability)
